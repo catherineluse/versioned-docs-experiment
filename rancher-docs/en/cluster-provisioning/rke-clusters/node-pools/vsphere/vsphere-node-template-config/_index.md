@@ -2,11 +2,9 @@
 title: VSphere Node Template Configuration
 weight: 2
 aliases:
-  - /rancher/v2.5/en/cluster-provisioning/rke-clusters/node-pools/vsphere/provisioning-vsphere-clusters/node-template-reference
-  - /rancher/v2.5/en/cluster-provisionin/rke-clusters/node-pools/vsphere/provisioning-vsphere-clusters/enabling-uuids
+  - /rancher/v2.6/en/cluster-provisioning/rke-clusters/node-pools/vsphere/provisioning-vsphere-clusters/node-template-reference
+  - /rancher/v2.6/en/cluster-provisionin/rke-clusters/node-pools/vsphere/provisioning-vsphere-clusters/enabling-uuids
 ---
-
-The following node template configuration reference applies to Rancher v2.3.3+.
 
 - [Account Access](#account-access)
 - [Scheduling](#scheduling)
@@ -19,7 +17,7 @@ The following node template configuration reference applies to Rancher v2.3.3+.
 
 | Parameter                | Required | Description |
 |:----------------------|:--------:|:-----|
-| Cloud Credentials   |   *      | Your vSphere account access information, stored in a [cloud credential.]({{<baseurl>}}/rancher/v2.5/en/user-settings/cloud-credentials/)  |
+| Cloud Credentials   |   *      | Your vSphere account access information, stored in a [cloud credential.]({{<baseurl>}}/rancher/v2.6/en/user-settings/cloud-credentials/)  |
 
 Your cloud credential has these fields:
 

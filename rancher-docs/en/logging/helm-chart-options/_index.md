@@ -13,8 +13,6 @@ weight: 4
 
 ### Enable/Disable Windows Node Logging
 
-_Available as of v2.5.8_
-
 You can enable or disable Windows node logging by setting `global.cattle.windows.enabled` to either `true` or `false` in the `values.yaml`.
 
 By default, Windows node logging will be enabled if the Cluster Explorer UI is used to install the logging application on a Windows cluster.
@@ -25,8 +23,6 @@ When disabled, logs will still be collected from Linux nodes within the Windows 
 > Note: Currently an [issue](https://github.com/rancher/rancher/issues/32325) exists where Windows nodeAgents are not deleted when performing a `helm upgrade` after disabling Windows logging in a Windows cluster. In this scenario, users may need to manually remove the Windows nodeAgents if they are already installed.
 
 ### Working with a Custom Docker Root Directory
-
-_Applies to v2.5.6+_
 
 If using a custom Docker root directory, you can set `global.dockerRootDirectory` in `values.yaml`.
 
@@ -42,13 +38,11 @@ You can add your own `nodeSelector` settings and add `tolerations` for additiona
 
 ### Enabling the Logging Application to Work with SELinux
 
-_Available as of v2.5.8_
-
 > **Requirements:** Logging v2 was tested with SELinux on RHEL/CentOS 7 and 8.
 
 [Security-Enhanced Linux (SELinux)](https://en.wikipedia.org/wiki/Security-Enhanced_Linux) is a security enhancement to Linux. After being historically used by government agencies, SELinux is now industry standard and is enabled by default on CentOS 7 and 8.
 
-To use Logging v2 with SELinux, we recommend installing the `rancher-selinux` RPM according to the instructions on [this page.]({{<baseurl>}}/rancher/v2.5/en/security/selinux/#installing-the-rancher-selinux-rpm)
+To use Logging v2 with SELinux, we recommend installing the `rancher-selinux` RPM according to the instructions on [this page.]({{<baseurl>}}/rancher/v2.6/en/security/selinux/#installing-the-rancher-selinux-rpm)
 
 Then, when installing the logging application, configure the chart to be SELinux aware by changing `global.seLinux.enabled` to `true` in the `values.yaml`.
 
