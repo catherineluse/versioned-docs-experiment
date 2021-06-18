@@ -2,8 +2,8 @@
 title: Example Repositories
 weight: 500
 aliases:
-  - /rancher/v2.0-v2.4/en/tools/pipelines/quick-start-guide/
-  - /rancher/v2.0-v2.4/en/k8s-in-rancher/pipelines/example-repos  
+  - /rancher/v2.5/en/tools/pipelines/quick-start-guide/
+  - /rancher/v2.5/en/k8s-in-rancher/pipelines/example-repos  
 ---
 
 Rancher ships with several example repositories that you can use to familiarize yourself with pipelines. We recommend configuring and testing the example repository that most resembles your environment before using pipelines with your own repositories in a production environment. Use this example repository as a sandbox for repo configuration, build demonstration, etc. Rancher includes example repositories for:
@@ -12,7 +12,7 @@ Rancher ships with several example repositories that you can use to familiarize 
 - Maven
 - php
 
-> **Note:** The example repositories are only available if you have not [configured a version control provider]({{<baseurl>}}/rancher/v2.0-v2.4/en/project-admin/pipelines).
+> **Note:** The example repositories are only available if you have not [configured a version control provider]({{<baseurl>}}/rancher/v2.5/en/project-admin/pipelines).
 
 To start using these example repositories,
 
@@ -26,7 +26,7 @@ By default, the example pipeline repositories are disabled. Enable one (or more)
 
 1. From the **Global** view, navigate to the project that you want to test out pipelines.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. Click **Configure Repositories**.
 
@@ -52,7 +52,7 @@ After enabling an example repository, review the pipeline to see how it is set u
 
 1. From the **Global** view, navigate to the project that you want to test out pipelines.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. Find the example repository, select the vertical **&#8942;**. There are two ways to view the pipeline:
   * **Rancher UI**: Click on **Edit Config** to view the stages and steps of the pipeline.
@@ -64,7 +64,7 @@ After enabling an example repository, run the pipeline to see how it works.
 
 1. From the **Global** view, navigate to the project that you want to test out pipelines.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. Find the example repository, select the vertical **&#8942; > Run**.
 
@@ -74,4 +74,4 @@ After enabling an example repository, run the pipeline to see how it works.
 
 ### What's Next?
 
-For detailed information about setting up your own pipeline for your repository, [configure a version control provider]({{<baseurl>}}/rancher/v2.0-v2.4/en/project-admin/pipelines), enable a repository and finally configure your pipeline.
+For detailed information about setting up your own pipeline for your repository, [configure a version control provider]({{<baseurl>}}/rancher/v2.5/en/project-admin/pipelines), enable a repository and finally configure your pipeline.

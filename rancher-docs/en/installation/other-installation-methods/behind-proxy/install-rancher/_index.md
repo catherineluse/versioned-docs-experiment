@@ -34,7 +34,7 @@ helm upgrade --install cert-manager jetstack/cert-manager \
   --namespace cert-manager --version v0.15.2 \
   --set http_proxy=http://${proxy_host} \
   --set https_proxy=http://${proxy_host} \
-  --set no_proxy=127.0.0.0/8\\,10.0.0.0/8\\,cattle-system.svc\\,172.16.0.0/12\\,192.168.0.0/16\\,.svc\\,.cluster.local
+  --set noProxy=127.0.0.0/8\\,10.0.0.0/8\\,cattle-system.svc\\,172.16.0.0/12\\,192.168.0.0/16\\,.svc\\,.cluster.local
 ```
 
 Now you should wait until cert-manager is finished starting up:
@@ -65,6 +65,7 @@ helm upgrade --install rancher rancher-latest/rancher \
    --namespace cattle-system \
    --set hostname=rancher.example.com \
    --set proxy=http://${proxy_host}
+   --set noProxy=127.0.0.0/8\\,10.0.0.0/8\\,cattle-system.svc\\,172.16.0.0/12\\,192.168.0.0/16\\,.svc\\,.cluster.local
 ```
 
 After waiting for the deployment to finish:
@@ -75,12 +76,12 @@ kubectl rollout status deployment -n cattle-system rancher
 
 You can now navigate to `https://rancher.example.com` and start using Rancher.
 
-> **Note:** If you don't intend to send telemetry data, opt out [telemetry]({{<baseurl>}}/rancher/v2.0-v2.4/en/faq/telemetry/) during the initial login. Leaving this active in an air-gapped environment can cause issues if the sockets cannot be opened successfully.
+> **Note:** If you don't intend to send telemetry data, opt out [telemetry]({{<baseurl>}}/rancher/v2.5/en/faq/telemetry/) during the initial login. Leaving this active in an air-gapped environment can cause issues if the sockets cannot be opened successfully.
 
 ### Additional Resources
 
 These resources could be helpful when installing Rancher:
 
-- [Rancher Helm chart options]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/resources/chart-options/)
-- [Adding TLS secrets]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/resources/encryption/tls-secrets/)
-- [Troubleshooting Rancher Kubernetes Installations]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/options/troubleshooting/)
+- [Rancher Helm chart options]({{<baseurl>}}/rancher/v2.5/en/installation/resources/chart-options/)
+- [Adding TLS secrets]({{<baseurl>}}/rancher/v2.5/en/installation/resources/encryption/tls-secrets/)
+- [Troubleshooting Rancher Kubernetes Installations]({{<baseurl>}}/rancher/v2.5/en/installation/options/troubleshooting/)

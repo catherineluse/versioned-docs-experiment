@@ -3,14 +3,14 @@ title: Adding Ingresses to Your Project
 description: Ingresses can be added for workloads to provide load balancing, SSL termination and host/path-based routing. Learn how to add Rancher ingress to your project
 weight: 3042
 aliases:
-  - /rancher/v2.0-v2.4/en/tasks/workloads/add-ingress/
-  - /rancher/v2.0-v2.4/en/k8s-in-rancher/load-balancers-and-ingress/ingress  
+  - /rancher/v2.5/en/tasks/workloads/add-ingress/
+  - /rancher/v2.5/en/k8s-in-rancher/load-balancers-and-ingress/ingress  
 ---
 
-Ingress can be added for workloads to provide load balancing, SSL termination and host/path based routing. When using ingresses in a project, you can program the ingress hostname to an external DNS by setting up a [Global DNS entry]({{<baseurl>}}/rancher/v2.0-v2.4/en/helm-charts/globaldns/).
+Ingress can be added for workloads to provide load balancing, SSL termination and host/path based routing. When using ingresses in a project, you can program the ingress hostname to an external DNS by setting up a Global DNS entry.
 
 1. From the **Global** view, open the project that you want to add ingress to.
-1. Click **Resources** in the main navigation bar. Click the **Load Balancing** tab. (In versions before v2.3.0, just click the **Load Balancing** tab.) Then click **Add Ingress**.
+1. Click **Resources** in the main navigation bar. Click the **Load Balancing** tab. Then click **Add Ingress**.
 1. Enter a **Name** for the ingress.
 1. Select an existing **Namespace** from the drop-down list. Alternatively, you can create a new namespace on the fly by clicking **Add to a new namespace**.
 1. Create ingress forwarding **Rules**. For help configuring the rules, refer to [this section.](#ingress-rule-configuration) If any of your ingress rules handle requests for encrypted ports, add a certificate to encrypt/decrypt communications.
@@ -58,7 +58,7 @@ Use this option to set an ingress rule for handling requests that don't match an
 1. Select a service or workload from the **Target** drop-down list.
 
 ### Certificates
->**Note:** You must have an SSL certificate that the ingress can use to encrypt/decrypt communications. For more information see [Adding SSL Certificates]({{<baseurl>}}/rancher/v2.0-v2.4/en/k8s-in-rancher/certificates/).
+>**Note:** You must have an SSL certificate that the ingress can use to encrypt/decrypt communications. For more information see [Adding SSL Certificates]({{<baseurl>}}/rancher/v2.5/en/k8s-in-rancher/certificates/).
 
 1. Click **Add Certificate**.
 1. Select a **Certificate** from the drop-down list.

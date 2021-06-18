@@ -2,14 +2,14 @@
 title: Launching Kubernetes on New Nodes in an Infrastructure Provider
 weight: 2205
 aliases:
-  - /rancher/v2.0-v2.4/en/concepts/global-configuration/node-templates/
+  - /rancher/v2.5/en/concepts/global-configuration/node-templates/
 ---
 
-Using Rancher, you can create pools of nodes based on a [node template]({{<baseurl>}}/rancher/v2.0-v2.4/en/cluster-provisioning/rke-clusters/node-pools/#node-templates). This node template defines the parameters you want to use to launch nodes in your infrastructure providers or cloud providers.
+Using Rancher, you can create pools of nodes based on a [node template]({{<baseurl>}}/rancher/v2.5/en/cluster-provisioning/rke-clusters/node-pools/#node-templates). This node template defines the parameters you want to use to launch nodes in your infrastructure providers or cloud providers.
 
 One benefit of installing Kubernetes on node pools hosted by an infrastructure provider is that if a node loses connectivity with the cluster, Rancher can automatically create another node to join the cluster to ensure that the count of the node pool is as expected.
 
-The available cloud providers to create a node template are decided based on active [node drivers]({{<baseurl>}}/rancher/v2.0-v2.4/en/cluster-provisioning/rke-clusters/node-pools/#node-drivers).
+The available cloud providers to create a node template are decided based on active [node drivers]({{<baseurl>}}/rancher/v2.5/en/cluster-provisioning/rke-clusters/node-pools/#node-drivers).
 
 This section covers the following topics:
 
@@ -37,15 +37,11 @@ You can add [labels](https://kubernetes.io/docs/concepts/overview/working-with-o
 
 ### Node Taints
 
-_Available as of Rancher v2.3.0_
-
 You can add [taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) on each node template, so that any nodes created from the node template will automatically have these taints on them.
 
 Since taints can be added at a node template and node pool, if there is no conflict with the same key and effect of the taints, all taints will be added to the nodes. If there are taints with the same key and different effect, the taints from the node pool will override the taints from the node template.
 
 ### Administrator Control of Node Templates
-
-_Available as of v2.3.3_
 
 Administrators can control all node templates. Admins can now maintain all the node templates within Rancher. When a node template owner is no longer using Rancher, the node templates created by them can be managed by administrators so the cluster can continue to be updated and maintained.
 
@@ -76,8 +72,6 @@ The recommended setup is to have:
 
 ### Node Pool Taints
 
-_Available as of Rancher v2.3.0_
-
 If you haven't defined [taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) on your node template, you can add taints for each node pool. The benefit of adding taints at a node pool is beneficial over adding it at a node template is that you can swap out the node templates without worrying if the taint is on the node template.
 
 For each taint, they will automatically be added to any created node in the node pool. Therefore, if you add taints to a node pool that have existing nodes, the taints won't apply to existing nodes in the node pool, but any new node added into the node pool will get the taint.
@@ -85,8 +79,6 @@ For each taint, they will automatically be added to any created node in the node
 When there are taints on the node pool and node template, if there is no conflict with the same key and effect of the taints, all taints will be added to the nodes. If there are taints with the same key and different effect, the taints from the node pool will override the taints from the node template.
 
 ### About Node Auto-replace
-
-_Available as of Rancher v2.3.0_
 
 If a node is in a node pool, Rancher can automatically replace unreachable nodes. Rancher will use the existing node template for the given node pool to recreate the node if it becomes inactive for a specified number of minutes.
 
@@ -126,8 +118,6 @@ You can disable node auto-replace from the Rancher UI with the following steps:
 
 # Cloud Credentials
 
-_Available as of v2.2.0_
-
 Node templates can use cloud credentials to store credentials for launching nodes in your cloud provider, which has some benefits:
 
 - Credentials are stored as a Kubernetes secret, which is not only more secure, but it also allows you to edit a node template without having to enter your credentials every time.
@@ -136,10 +126,8 @@ Node templates can use cloud credentials to store credentials for launching node
 
 - Multiple node templates can share the same cloud credential to create node pools. If your key is compromised or expired, the cloud credential can be updated in a single place, which allows all node templates that are using it to be updated at once.
 
-> **Note:** As of v2.2.0, the default `active` [node drivers]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/drivers/node-drivers/) and any node driver, that has fields marked as `password`, are required to use cloud credentials. If you have upgraded to v2.2.0, existing node templates will continue to work with the previous account access  information, but when you edit the node template, you will be required to create a cloud credential and the node template will start using it.
-
-After cloud credentials are created, the user can start [managing the cloud credentials that they created]({{<baseurl>}}/rancher/v2.0-v2.4/en/user-settings/cloud-credentials/).
+After cloud credentials are created, the user can start [managing the cloud credentials that they created]({{<baseurl>}}/rancher/v2.5/en/user-settings/cloud-credentials/).
 
 # Node Drivers
 
-If you don't find the node driver that you want to use, you can see if it is available in Rancher's built-in [node drivers and activate it]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/drivers/node-drivers/#activating-deactivating-node-drivers), or you can [add your own custom node driver]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/drivers/node-drivers/#adding-custom-node-drivers).
+If you don't find the node driver that you want to use, you can see if it is available in Rancher's built-in [node drivers and activate it]({{<baseurl>}}/rancher/v2.5/en/admin-settings/drivers/node-drivers/#activating-deactivating-node-drivers), or you can [add your own custom node driver]({{<baseurl>}}/rancher/v2.5/en/admin-settings/drivers/node-drivers/#adding-custom-node-drivers).

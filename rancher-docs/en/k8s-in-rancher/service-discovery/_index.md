@@ -2,8 +2,8 @@
 title: Service Discovery
 weight: 3045
 aliases:
-  - /rancher/v2.0-v2.4/en/tasks/workloads/add-a-dns-record/
-  - /rancher/v2.0-v2.4/en/k8s-in-rancher/service-discovery
+  - /rancher/v2.5/en/tasks/workloads/add-a-dns-record/
+  - /rancher/v2.5/en/k8s-in-rancher/service-discovery
 ---
 
 For every workload created, a complementing Service Discovery entry is created. This Service Discovery entry enables DNS resolution for the workload's pods using the following naming convention:
@@ -13,7 +13,7 @@ However, you also have the option of creating additional Service Discovery recor
 
 1. From the **Global** view, open the project that you want to add a DNS record to.
 
-1. Click **Resources** in the main navigation bar. Click the **Service Discovery** tab. (In versions before v2.3.0, just click the **Service Discovery** tab.) Then click **Add Record**.
+1. Click **Resources** in the main navigation bar. Click the **Service Discovery** tab. Then click **Add Record**.
 
 1. Enter a **Name** for the DNS record. This name is used for DNS resolution.
 

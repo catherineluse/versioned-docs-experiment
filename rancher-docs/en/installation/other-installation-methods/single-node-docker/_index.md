@@ -3,9 +3,9 @@ title: Installing Rancher on a Single Node Using Docker
 description: For development and testing environments only, use a Docker install. Install Docker on a single Linux host, and deploy Rancher with a single Docker container.
 weight: 2
 aliases:
-  - /rancher/v2.0-v2.4/en/installation/single-node-install/
-  - /rancher/v2.0-v2.4/en/installation/single-node
-  - /rancher/v2.0-v2.4/en/installation/other-installation-methods/single-node
+  - /rancher/v2.5/en/installation/single-node-install/
+  - /rancher/v2.5/en/installation/single-node
+  - /rancher/v2.5/en/installation/other-installation-methods/single-node
 ---
 
 Rancher can be installed by running a single Docker container.
@@ -13,19 +13,23 @@ Rancher can be installed by running a single Docker container.
 In this installation scenario, you'll install Docker on a single Linux host, and then deploy Rancher on your host using a single Docker container.
 
 > **Want to use an external load balancer?**
-> See [Docker Install with an External Load Balancer]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/options/single-node-install-external-lb) instead.
+> See [Docker Install with an External Load Balancer]({{<baseurl>}}/rancher/v2.5/en/installation/options/single-node-install-external-lb) instead.
 
-A Docker installation of Rancher is recommended only for development and testing purposes.
+A Docker installation of Rancher is recommended only for development and testing purposes. The ability to migrate Rancher to a high-availability cluster depends on the Rancher version:
 
-For Rancher v2.0-v2.4, there is no migration path from a Docker installation to a high-availability installation. Therefore, you may want to use a Kubernetes installation from the start.
+The Rancher backup operator can be used to migrate Rancher from the single Docker container install to an installation on a high-availability Kubernetes cluster. For details, refer to the documentation on [migrating Rancher to a new cluster.]({{<baseurl>}}/rancher/v2.5/en/backups/migrating-rancher)
+
+### Privileged Access for Rancher v2.5+
+
+When the Rancher server is deployed in the Docker container, a local Kubernetes cluster is installed within the container for Rancher to use. Because many features of Rancher run as deployments, and privileged mode is required to run containers within containers, you will need to install Rancher with the `--privileged` option.
 
 # Requirements for OS, Docker, Hardware, and Networking
 
-Make sure that your node fulfills the general [installation requirements.]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/requirements/)
+Make sure that your node fulfills the general [installation requirements.]({{<baseurl>}}/rancher/v2.5/en/installation/requirements/)
 
 # 1. Provision Linux Host
 
-Provision a single Linux host according to our [Requirements]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/requirements) to launch your Rancher server.
+Provision a single Linux host according to our [Requirements]({{<baseurl>}}/rancher/v2.5/en/installation/requirements) to launch your Rancher server.
 
 # 2. Choose an SSL Option and Install Rancher
 
@@ -33,9 +37,9 @@ For security purposes, SSL (Secure Sockets Layer) is required when using Rancher
 
 > **Do you want to...**
 >
-> - Use a proxy? See [HTTP Proxy Configuration]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/other-installation-methods/single-node-docker/proxy/)
-> - Configure custom CA root certificate to access your services? See [Custom CA root certificate]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/other-installation-methods/single-node-docker/advanced/#custom-ca-certificate/)
-> - Complete an Air Gap Installation? See [Air Gap: Docker Install]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/air-gap-single-node/)
+> - Use a proxy? See [HTTP Proxy Configuration]({{<baseurl>}}/rancher/v2.5/en/installation/other-installation-methods/single-node-docker/proxy/)
+> - Configure custom CA root certificate to access your services? See [Custom CA root certificate]({{<baseurl>}}/rancher/v2.5/en/installation/other-installation-methods/single-node-docker/advanced/#custom-ca-certificate/)
+> - Complete an Air Gap Installation? See [Air Gap: Docker Install]({{<baseurl>}}/rancher/v2.5/en/installation/air-gap-single-node/)
 > - Record all transactions with the Rancher API? See [API Auditing](./advanced/#api-audit-log)
 
 Choose from the following options:
@@ -51,10 +55,12 @@ If you are installing Rancher in a development or testing environment where iden
 
 Log into your Linux host, and then run the minimum installation command below.
 
+As of Rancher v2.5, privileged access is [required.](#privileged-access-for-rancher-v2-5)
 
 ```bash
 docker run -d --restart=unless-stopped \
   -p 80:80 -p 443:443 \
+  --privileged \
   rancher/rancher:latest
 ```
 
@@ -65,7 +71,7 @@ In development or testing environments where your team will access your Rancher 
 > Create a self-signed certificate using [OpenSSL](https://www.openssl.org/) or another method of your choice.
 >
 > - The certificate files must be in PEM format.
-> - In your certificate file, include all intermediate certificates in the chain. Order your certificates with your certificate first, followed by the intermediates. For an example, see [Certificate Troubleshooting.]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/other-installation-methods/single-node-docker/troubleshooting)
+> - In your certificate file, include all intermediate certificates in the chain. Order your certificates with your certificate first, followed by the intermediates. For an example, see [Certificate Troubleshooting.]({{<baseurl>}}/rancher/v2.5/en/installation/other-installation-methods/single-node-docker/troubleshooting)
 
 After creating your certificate, run the Docker command below to install Rancher. Use the `-v` flag and provide the path to your certificates to mount them in your container.
 
@@ -76,12 +82,15 @@ After creating your certificate, run the Docker command below to install Rancher
 | `<PRIVATE_KEY.pem>` | The path to the private key for your certificate.            |
 | `<CA_CERTS.pem>`        | The path to the certificate authority's certificate.         |
 
+As of Rancher v2.5, privileged access is [required.](#privileged-access-for-rancher-v2-5)
+
 ```bash
 docker run -d --restart=unless-stopped \
   -p 80:80 -p 443:443 \
   -v /<CERT_DIRECTORY>/<FULL_CHAIN.pem>:/etc/rancher/ssl/cert.pem \
   -v /<CERT_DIRECTORY>/<PRIVATE_KEY.pem>:/etc/rancher/ssl/key.pem \
   -v /<CERT_DIRECTORY>/<CA_CERTS.pem>:/etc/rancher/ssl/cacerts.pem \
+  --privileged \
   rancher/rancher:latest
 ```
 
@@ -92,7 +101,7 @@ In production environments where you're exposing an app publicly, use a certific
 > **Prerequisites:**
 >
 > - The certificate files must be in PEM format.
-> - In your certificate file, include all intermediate certificates provided by the recognized CA. Order your certificates with your certificate first, followed by the intermediates. For an example, see [Certificate Troubleshooting.]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/other-installation-methods/single-node-docker/troubleshooting)
+> - In your certificate file, include all intermediate certificates provided by the recognized CA. Order your certificates with your certificate first, followed by the intermediates. For an example, see [Certificate Troubleshooting.]({{<baseurl>}}/rancher/v2.5/en/installation/other-installation-methods/single-node-docker/troubleshooting)
 
 After obtaining your certificate, run the Docker command below.
 
@@ -105,12 +114,14 @@ After obtaining your certificate, run the Docker command below.
 | `<FULL_CHAIN.pem>`  | The path to your full certificate chain.                     |
 | `<PRIVATE_KEY.pem>` | The path to the private key for your certificate. |
 
+As of Rancher v2.5, privileged access is [required.](#privileged-access-for-rancher-v2-5)
 
 ```bash
 docker run -d --restart=unless-stopped \
   -p 80:80 -p 443:443 \
   -v /<CERT_DIRECTORY>/<FULL_CHAIN.pem>:/etc/rancher/ssl/cert.pem \
   -v /<CERT_DIRECTORY>/<PRIVATE_KEY.pem>:/etc/rancher/ssl/key.pem \
+  --privileged \
   rancher/rancher:latest \
   --no-cacerts
 ```
@@ -133,9 +144,12 @@ After you fulfill the prerequisites, you can install Rancher using a Let's Encry
 | ----------------- | ------------------- |
 | `<YOUR.DNS.NAME>` | Your domain address |
 
+As of Rancher v2.5, privileged access is [required.](#privileged-access-for-rancher-v2-5)
+
 ```
 docker run -d --restart=unless-stopped \
   -p 80:80 -p 443:443 \
+  --privileged \
   rancher/rancher:latest \
   --acme-domain <YOUR.DNS.NAME>
 ```
@@ -159,5 +173,5 @@ Refer to [this page](./troubleshooting) for frequently asked questions and troub
 
 ## What's Next?
 
-- **Recommended:** Review [Single Node Backup and Restore]({{<baseurl>}}/rancher/v2.0-v2.4/en/installation/backups-and-restoration/single-node-backup-and-restoration/). Although you don't have any data you need to back up right now, we recommend creating backups after regular Rancher use.
-- Create a Kubernetes cluster: [Provisioning Kubernetes Clusters]({{<baseurl>}}/rancher/v2.0-v2.4/en/cluster-provisioning/).
+- **Recommended:** Review [Single Node Backup and Restore]({{<baseurl>}}/rancher/v2.5/en/installation/backups-and-restoration/single-node-backup-and-restoration/). Although you don't have any data you need to back up right now, we recommend creating backups after regular Rancher use.
+- Create a Kubernetes cluster: [Provisioning Kubernetes Clusters]({{<baseurl>}}/rancher/v2.5/en/cluster-provisioning/).

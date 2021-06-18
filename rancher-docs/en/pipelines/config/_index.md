@@ -2,7 +2,7 @@
 title: Pipeline Configuration Reference
 weight: 1
 aliases:
-  - /rancher/v2.0-v2.4/en/k8s-in-rancher/pipelines/config
+  - /rancher/v2.5/en/k8s-in-rancher/pipelines/config
 ---
 
 In this section, you'll learn how to configure pipelines.
@@ -104,8 +104,6 @@ stages:
 ```
 # Step Type: Build and Publish Images
 
-_Available as of Rancher v2.1.0_
-
 The **Build and Publish Image** step builds and publishes a Docker image. This process requires a Dockerfile in your source code's repository to complete successfully.
 
 The option to publish an image to an insecure registry is not exposed in the UI, but you can specify an environment variable in the YAML that allows you to publish an image insecurely.
@@ -156,9 +154,7 @@ stages:
 
 # Step Type: Publish Catalog Template
 
-_Available as of v2.2.0_
-
-The **Publish Catalog Template** step publishes a version of a catalog app template (i.e. Helm chart) to a [git hosted chart repository]({{<baseurl>}}/rancher/v2.0-v2.4/en/catalog/custom/). It generates a git commit and pushes it to your chart repository. This process requires a chart folder in your source code's repository and a pre-configured secret in the dedicated pipeline namespace to complete successfully. Any variables in the [pipeline variable substitution reference](#pipeline-variable-substitution-reference) is supported for any file in the chart folder.
+The **Publish Catalog Template** step publishes a version of a catalog app template (i.e. Helm chart) to a git hosted chart repository. It generates a git commit and pushes it to your chart repository. This process requires a chart folder in your source code's repository and a pre-configured secret in the dedicated pipeline namespace to complete successfully. Any variables in the [pipeline variable substitution reference](#pipeline-variable-substitution-reference) is supported for any file in the chart folder.
 
 ### Configuring Publishing a Catalog Template by UI
 
@@ -237,8 +233,6 @@ stages:
 
 # Step Type :Deploy Catalog App
 
-_Available as of v2.2.0_
-
 The **Deploy Catalog App** step deploys a catalog app in the project. It will install a new app if it is not present, or upgrade an existing one.
 
 ### Configure Deploying Catalog App by UI
@@ -309,24 +303,21 @@ timeout: 30
 
 # Notifications
 
-You can enable notifications to any [notifiers]({{<baseurl>}}/rancher/v2.0-v2.4/en/cluster-admin/tools/notifiers/) based on the build status of a pipeline. Before enabling notifications, Rancher recommends [setting up notifiers]({{<baseurl>}}/rancher/v2.0-v2.4/en/monitoring-alerting/legacy/notifiers/) so it will be easy to add recipients immediately.
+You can enable notifications to any [notifiers]({{<baseurl>}}/rancher/v2.5/en/cluster-admin/tools/notifiers/) based on the build status of a pipeline. Before enabling notifications, Rancher recommends [setting up notifiers]({{<baseurl>}}/rancher/v2.5/en/monitoring-alerting/legacy/notifiers/) so it will be easy to add recipients immediately.
 
 ### Configuring Notifications by UI
-
-_Available as of v2.2.0_
 
 1. Within the **Notification** section, turn on notifications by clicking **Enable**.
 
 1. Select the conditions for the notification. You can select to get a notification for the following statuses: `Failed`, `Success`, `Changed`. For example, if you want to receive notifications when an execution fails, select **Failed**.
 
-1. If you don't have any existing [notifiers]({{<baseurl>}}/rancher/v2.0-v2.4/en/cluster-admin/tools/notifiers), Rancher will provide a warning that no notifiers are set up and provide a link to be able to go to the notifiers page. Follow the [instructions]({{<baseurl>}}/rancher/v2.0-v2.4/en/monitoring-alerting/legacy/notifiers/) to add a notifier. If you  already have notifiers, you can add them to the notification by clicking the **Add Recipient** button.
+1. If you don't have any existing [notifiers]({{<baseurl>}}/rancher/v2.5/en/cluster-admin/tools/notifiers), Rancher will provide a warning that no notifiers are set up and provide a link to be able to go to the notifiers page. Follow the [instructions]({{<baseurl>}}/rancher/v2.5/en/monitoring-alerting/legacy/notifiers/) to add a notifier. If you  already have notifiers, you can add them to the notification by clicking the **Add Recipient** button.
 
     > **Note:** Notifiers are configured at a cluster level and require a different level of permissions.
 
 1. For each recipient, select which notifier type from the dropdown. Based on the type of notifier, you can use the default recipient or override the recipient with a different one. For example, if you have a notifier for _Slack_, you can update which channel to send the notification to. You can add additional notifiers by clicking **Add Recipient**.
 
 ### Configuring Notifications by YAML
-_Available as of v2.2.0_
 
 In the `notification` section, you will provide the following information:
 
@@ -393,7 +384,7 @@ This section covers the following topics:
 
 1. From the **Global** view, navigate to the project that you want to configure a pipeline trigger rule.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. From the repository for which you want to manage trigger rules, select the vertical **&#8942; > Edit Config**.
 
@@ -411,7 +402,7 @@ This section covers the following topics:
 
 1. From the **Global** view, navigate to the project that you want to configure a stage trigger rule.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. From the repository for which you want to manage trigger rules, select the vertical **&#8942; > Edit Config**.
 
@@ -436,7 +427,7 @@ This section covers the following topics:
 
 1. From the **Global** view, navigate to the project that you want to configure a stage trigger rule.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. From the repository for which you want to manage trigger rules, select the vertical **&#8942; > Edit Config**.
 
@@ -491,7 +482,7 @@ When configuring a pipeline, certain [step types](#step-types) allow you to use 
 
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. From the pipeline for which you want to edit build triggers, select **&#8942; > Edit Config**.
 
@@ -522,7 +513,7 @@ stages:
 
 # Secrets
 
-If you need to use security-sensitive information in your pipeline scripts (like a password), you can pass them in using Kubernetes [secrets]({{<baseurl>}}/rancher/v2.0-v2.4/en/k8s-in-rancher/secrets/).
+If you need to use security-sensitive information in your pipeline scripts (like a password), you can pass them in using Kubernetes [secrets]({{<baseurl>}}/rancher/v2.5/en/k8s-in-rancher/secrets/).
 
 ### Prerequisite
 Create a secret in the same project as your pipeline, or explicitly in the namespace where pipeline build pods run.
@@ -534,7 +525,7 @@ Create a secret in the same project as your pipeline, or explicitly in the names
 
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
-1. Click **Resources > Pipelines.** In versions before v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. From the pipeline for which you want to edit build triggers, select **&#8942; > Edit Config**.
 
@@ -584,7 +575,7 @@ Variable Name           | Description
 
 # Global Pipeline Execution Settings
 
-After configuring a version control provider, there are several options that can be configured globally on how pipelines are executed in Rancher. These settings can be edited by selecting **Tools > Pipelines** in the navigation bar. In versions before v2.2.0, you can select **Resources > Pipelines**.
+After configuring a version control provider, there are several options that can be configured globally on how pipelines are executed in Rancher. These settings can be edited by selecting **Tools > Pipelines** in the navigation bar.
 
 - [Executor Quota](#executor-quota)
 - [Resource Quota for Executors](#resource-quota-for-executors)
@@ -595,8 +586,6 @@ After configuring a version control provider, there are several options that can
 Select the maximum number of pipeline executors. The _executor quota_ decides how many builds can run simultaneously in the project. If the number of triggered builds exceeds the quota, subsequent builds will queue until a vacancy opens. By default, the quota is `2`. A value of `0` or less removes the quota limit.
 
 ### Resource Quota for Executors
-
-_Available as of v2.2.0_
 
 Configure compute resources for Jenkins agent containers. When a pipeline execution is triggered, a build pod is dynamically provisioned to run your CI tasks. Under the hood, A build pod consists of one Jenkins agent container and one container for each pipeline step. You can [manage compute resources](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/) for every containers in the pod.
 
@@ -639,8 +628,6 @@ stages:
 
 ### Custom CA  
 
-_Available as of v2.2.0_
-
 If you want to use a version control provider with a certificate from a custom/internal CA root, the CA root certificates need to be added as part of the version control provider configuration in order for the pipeline build pods to succeed.
 
 1. Click **Edit cacerts**.
@@ -653,8 +640,8 @@ If you want to use a version control provider with a certificate from a custom/i
 
 The internal Docker registry and the Minio workloads use ephemeral volumes by default. This default storage works out-of-the-box and makes testing easy, but you lose the build images and build logs if the node running the Docker Registry or Minio fails. In most cases this is fine. If you want build images and logs to survive node failures, you can configure the Docker Registry and Minio to use persistent volumes.
 
-For details on setting up persistent storage for pipelines, refer to [this page.]({{<baseurl>}}/rancher/v2.0-v2.4/en/k8s-in-rancher/pipelines/storage)
+For details on setting up persistent storage for pipelines, refer to [this page.]({{<baseurl>}}/rancher/v2.5/en/k8s-in-rancher/pipelines/storage)
 
 # Example rancher-pipeline.yml
 
-An example pipeline configuration file is on [this page.]({{<baseurl>}}/rancher/v2.0-v2.4/en/k8s-in-rancher/pipelines/example)
+An example pipeline configuration file is on [this page.]({{<baseurl>}}/rancher/v2.5/en/k8s-in-rancher/pipelines/example)

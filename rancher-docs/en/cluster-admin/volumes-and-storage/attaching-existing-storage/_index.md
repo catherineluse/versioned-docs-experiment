@@ -1,6 +1,8 @@
 ---
 title: Setting up Existing Storage
 weight: 1
+aliases:
+  - /rancher/v2.5/en/k8s-in-rancher/volumes-and-storage/persistent-volume-claims/
 ---
 
 This section describes how to set up existing persistent storage for workloads in Rancher.
@@ -16,7 +18,7 @@ To set up storage, follow these steps:
 
 ### Prerequisites
 
-- To create a persistent volume as a Kubernetes resource, you must have the `Manage Volumes` [role.]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/rbac/cluster-project-roles/#project-role-reference)
+- To create a persistent volume as a Kubernetes resource, you must have the `Manage Volumes` [role.]({{<baseurl>}}/rancher/v2.5/en/admin-settings/rbac/cluster-project-roles/#project-role-reference)
 - If you are provisioning storage for a cluster hosted in the cloud, the storage and cluster hosts must have the same cloud provider.
 
 ### 1. Set up persistent storage
@@ -25,7 +27,7 @@ Creating a persistent volume in Rancher will not create a storage volume. It onl
 
 The steps to set up a persistent storage device will differ based on your infrastructure. We provide examples of how to set up storage using [vSphere,](../examples/vsphere) [NFS,](../examples/nfs) or Amazon's [EBS.](../examples/ebs) 
 
-If you have a pool of block storage, and you don't want to use a cloud provider, Longhorn could help you provide persistent storage to your Kubernetes cluster. 
+If you have a pool of block storage, and you don't want to use a cloud provider, Longhorn could help you provide persistent storage to your Kubernetes cluster. For more information, see [this page.]({{<baseurl>}}/rancher/v2.5/en/longhorn)
 
 ### 2. Add a persistent volume that refers to the persistent storage
 
@@ -57,7 +59,7 @@ These steps describe how to set up a PVC in the namespace where your stateful wo
 
 1. Go to the project containing a workload that you want to add a persistent volume claim to.
 
-1. Then click the **Volumes** tab and click **Add Volume**. (In versions before v2.3.0, click **Workloads** on the main navigation bar, then **Volumes.**) 
+1. Then click the **Volumes** tab and click **Add Volume**.
 
 1. Enter a **Name** for the volume claim.
 

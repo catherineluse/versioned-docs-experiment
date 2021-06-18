@@ -2,10 +2,8 @@
 title: Configuring Azure AD
 weight: 1115
 aliases:
-    - /rancher/v2.0-v2.4/en/tasks/global-configuration/authentication/azure-ad/
+    - /rancher/v2.5/en/tasks/global-configuration/authentication/azure-ad/
 ---
-
-_Available as of v2.0.3_
 
 If you have an instance of Active Directory (AD) hosted in Azure, you can configure Rancher to allow your users to log in using their AD accounts. Configuration of Azure AD external authentication requires you to make configurations in both Azure and Rancher.
 

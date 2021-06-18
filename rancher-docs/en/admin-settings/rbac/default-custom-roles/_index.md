@@ -2,7 +2,7 @@
 title: Custom Roles
 weight: 1128
 aliases:
-  - /rancher/v2.0-v2.4/en/tasks/global-configuration/roles/
+  - /rancher/v2.5/en/tasks/global-configuration/roles/
 ---
 
 Within Rancher, _roles_ determine what actions a user can make within a cluster or project.
@@ -21,17 +21,14 @@ This section covers the following topics:
 
 To complete the tasks on this page, one of the following permissions are required:
 
- - [Administrator Global Permissions]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/rbac/global-permissions/).
- - [Custom Global Permissions]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/rbac/global-permissions/#custom-global-permissions) with the [Manage Roles]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/rbac/global-permissions/) role assigned.
+ - [Administrator Global Permissions]({{<baseurl>}}/rancher/v2.5/en/admin-settings/rbac/global-permissions/).
+ - [Custom Global Permissions]({{<baseurl>}}/rancher/v2.5/en/admin-settings/rbac/global-permissions/#custom-global-permissions) with the [Manage Roles]({{<baseurl>}}/rancher/v2.5/en/admin-settings/rbac/global-permissions/) role assigned.
 
 ## Creating A Custom Role for a Cluster or Project
 
 While Rancher comes out-of-the-box with a set of default user roles, you can also create default custom roles to provide users with very specific permissions within Rancher.
 
 The steps to add custom roles differ depending on the version of Rancher.
-
-{{% tabs %}}
-{{% tab "Rancher v2.0.7+" %}}
 
 1.  From the **Global** view, select **Security > Roles** from the main menu.
 
@@ -60,45 +57,7 @@ The steps to add custom roles differ depending on the version of Rancher.
 
 1.  Click **Create**.
 
-{{% /tab %}}
-{{% tab "Rancher before v2.0.7" %}}
-
-1.  From the **Global** view, select **Security > Roles** from the main menu.
-
-1.  Click **Add Role**.
-
-1.  **Name** the role.
-
-1.  Choose whether to set the role to a status of [locked]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/rbac/locked-roles/).
-
-    > **Note:** Locked roles cannot be assigned to users.
-
-1.  In the **Context** dropdown menu, choose the scope of the role assigned to the user. The contexts are:
-
-    - **All:** The user can use their assigned role regardless of context. This role is valid for assignment when adding/managing members to clusters or projects.
-
-    - **Cluster:** This role is valid for assignment when adding/managing members to _only_ clusters.
-
-    - **Project:** This role is valid for assignment when adding/managing members to _only_ projects.
-
-1.  Use the **Grant Resources** options to assign individual [Kubernetes API endpoints](https://kubernetes.io/docs/reference/) to the role.
-
-    > When viewing the resources associated with default roles created by Rancher, if there are multiple Kubernetes API resources on one line item, the resource will have `(Custom)` appended to it. These are not custom resources but just an indication that there are multiple Kubernetes API resources as one resource.
-    
-    > The Resource text field provides a method to search for pre-defined Kubernetes API resources, or enter a custom resource name for the grant. The pre-defined or `(Custom)` resource must be selected from the dropdown, after entering a resource name into this field.
-
-    You can also choose the individual cURL methods (`Create`, `Delete`, `Get`, etc.) available for use with each endpoint you assign.
-
-1.  Use the **Inherit from a Role** options to assign individual Rancher roles to your custom roles. Note: When a custom role inherits from a parent role, the parent role cannot be deleted until the child role is deleted.
-
-1.  Click **Create**.
-
-{{% /tab %}}
-{{% /tabs %}}
-
 ## Creating a Custom Global Role
-
-_Available as of v2.4.0_
 
 ### Creating a Custom Global Role that Copies Rules from an Existing Role
 
@@ -134,8 +93,6 @@ Custom global roles don't have to be based on existing roles. To create a custom
 
 ## Deleting a Custom Global Role
 
-_Available as of v2.4.0_
-
 When deleting a custom global role, all global role bindings with this custom role are deleted.
 
 If a user is only assigned one custom global role, and the role is deleted, the user would lose access to Rancher. For the user to regain access, an administrator would need to edit the user and apply new global permissions.
@@ -150,8 +107,6 @@ To delete a custom global role,
 
 ## Assigning a Custom Global Role to a Group
 
-_Available as of v2.4.0_
-
 If you have a group of individuals that need the same level of access in Rancher, it can save time to create a custom global role. When the role is assigned to a group, the users in the group have the appropriate level of access the first time they sign into Rancher.
 
 When a user in the group logs in, they get the built-in Standard User global role by default. They will also get the permissions assigned to their groups.
@@ -160,8 +115,8 @@ If a user is removed from the external authentication provider group, they would
 
 > **Prerequisites:** You can only assign a global role to a group if:
 >
-> * You have set up an [external authentication provider]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/authentication/#external-vs-local-authentication)
-> * The external authentication provider supports [user groups]({{<baseurl>}}/rancher/v2.0-v2.4/en/admin-settings/authentication/user-groups/)
+> * You have set up an [external authentication provider]({{<baseurl>}}/rancher/v2.5/en/admin-settings/authentication/#external-vs-local-authentication)
+> * The external authentication provider supports [user groups]({{<baseurl>}}/rancher/v2.5/en/admin-settings/authentication/user-groups/)
 > * You have already set up at least one user group with the authentication provider
 
 To assign a custom global role to a group, follow these steps:
